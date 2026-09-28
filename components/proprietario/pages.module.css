@@ -69,7 +69,6 @@
 
 .content h1 {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 38px;
   font-weight: 500;
   line-height: 1.1;
@@ -96,7 +95,6 @@
 
 .sectionHeading h2 {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 20px;
   font-weight: 500;
 }

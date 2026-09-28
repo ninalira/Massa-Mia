@@ -63,7 +63,6 @@
 
 .heading h1 {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 39px;
   font-weight: 500;
   line-height: 1.1;
@@ -101,21 +100,13 @@
 
 .sectionHeading {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
   margin-bottom: 14px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--blue-soft);
 }
 
-.sectionHeading .eyebrow {
-  margin: 0;
-  white-space: nowrap;
-}
-
 .sectionHeading h2 {
   margin: 0;
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 22px;
   font-weight: 500;
 }
@@ -196,7 +187,6 @@
 .valuePair strong,
 .metricValue {
   color: var(--blue);
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 21px;
   font-weight: 500;
 }
@@ -221,7 +211,6 @@
 .winnerResult strong,
 .winnerResult b {
   color: var(--terracotta);
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 20px;
   font-weight: 500;
 }
@@ -341,7 +330,6 @@
 
 .flavorPosition {
   color: var(--terracotta);
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 14px;
 }
 
@@ -379,7 +367,6 @@
 
 .satisfactionPanel strong {
   color: var(--terracotta);
-  font-family: Georgia, 'Times New Roman', serif;
   font-size: 30px;
   font-weight: 500;
 }

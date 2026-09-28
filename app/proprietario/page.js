@@ -2,17 +2,29 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Paper, Title, TextInput, PasswordInput, Button, Text } from '@mantine/core';
 import styles from './page.module.css';
 
+const DEMO_LOGIN = 'proprietario';
+const DEMO_PASSWORD = 'massa123';
+
 export default function LoginProprietario() {
+  const router = useRouter();
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
+  const [erro, setErro] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log({ login, senha });
-    // aqui depois você chama sua API de autenticação
+
+    if (login.trim() !== DEMO_LOGIN || senha !== DEMO_PASSWORD) {
+      setErro('Login ou senha inválidos. Confira os dados de demonstração.');
+      return;
+    }
+
+    setErro('');
+    router.push('/proprietario/menu');
   }
 
   return (
@@ -27,7 +39,11 @@ export default function LoginProprietario() {
             label="Login"
             placeholder="Seu login"
             value={login}
-            onChange={(e) => setLogin(e.currentTarget.value)}
+            autoComplete="username"
+            onChange={(e) => {
+              setLogin(e.currentTarget.value);
+              setErro('');
+            }}
             required
           />
           <PasswordInput
@@ -35,13 +51,23 @@ export default function LoginProprietario() {
             placeholder="Sua senha"
             mt="md"
             value={senha}
-            onChange={(e) => setSenha(e.currentTarget.value)}
+            autoComplete="current-password"
+            onChange={(e) => {
+              setSenha(e.currentTarget.value);
+              setErro('');
+            }}
             required
           />
           <Button type="submit" fullWidth mt="xl" color="massaVermelho">
             Entrar
           </Button>
         </form>
+
+        {erro && <Text className={styles.error} role="alert" size="sm">{erro}</Text>}
+
+        <Text className={styles.demoInfo} size="sm" ta="center">
+          Acesso de demonstração: <strong>proprietario</strong> / <strong>massa123</strong>
+        </Text>
 
         <Text size="sm" mt="md" ta="center">
           <Link href="/">Voltar ao início</Link>

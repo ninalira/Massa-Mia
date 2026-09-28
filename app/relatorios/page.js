@@ -32,7 +32,6 @@ export default function ReportsPage() {
 
           <section className={styles.reportSection} aria-labelledby="financeiro-title">
             <div className={styles.sectionHeading}>
-              <p className={styles.eyebrow}>01 · RESULTADOS</p>
               <h2 id="financeiro-title">Financeiro</h2>
             </div>
 
@@ -100,7 +99,6 @@ export default function ReportsPage() {
 
           <section className={styles.reportSection} aria-labelledby="produtos-title">
             <div className={styles.sectionHeading}>
-              <p className={styles.eyebrow}>02 · CONSUMO</p>
               <h2 id="produtos-title">Produtos mais consumidos</h2>
             </div>
 
@@ -143,7 +141,6 @@ export default function ReportsPage() {
 
           <section className={styles.reportSection} aria-labelledby="experiencia-title">
             <div className={styles.sectionHeading}>
-              <p className={styles.eyebrow}>03 · EXPERIÊNCIA</p>
               <h2 id="experiencia-title">Satisfação média</h2>
             </div>
             <article className={styles.satisfactionPanel}>
