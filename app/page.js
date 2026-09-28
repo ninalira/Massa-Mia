@@ -12,8 +12,8 @@ export default function Home() {
         <Image
           src="/logo.jpg"
           alt="Massa Mia"
-          width={1000}
-          height={1000}
+          width={1584}
+          height={396}
           priority
           className={styles.logo}
         />
