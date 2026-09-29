@@ -1,0 +1,160 @@
+.page {
+  --blue: #4a69b3;
+  --yellow: #ffec89;
+  --terracotta: #ba3801;
+  --cream: #fff3e1;
+  --blue-soft: rgb(74 105 179 / 16%);
+  --blue-muted: rgb(74 105 179 / 72%);
+  min-height: 100vh;
+  color: var(--blue);
+  background: var(--cream);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topbar {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(20px, 5vw, 76px);
+  border-bottom: 1px solid var(--blue-soft);
+}
+
+.brand,
+.pending {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.brand span {
+  padding: 0 7px;
+  color: var(--terracotta);
+}
+
+.pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  color: var(--terracotta);
+  background: var(--yellow);
+  font-size: 10px;
+}
+
+.pending i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--terracotta);
+}
+
+.content {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  padding: 48px clamp(20px, 5vw, 76px) 30px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--terracotta);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.content h1 {
+  margin: 0;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.description {
+  margin: 10px 0 0;
+  color: var(--blue-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.menu {
+  display: grid;
+  margin-top: 32px;
+  border-top: 1px solid var(--blue-soft);
+}
+
+.menuItem {
+  display: grid;
+  min-height: 90px;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 12px;
+  border-bottom: 1px solid var(--blue-soft);
+  transition: background-color 140ms ease;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background: rgb(255 236 137 / 56%);
+}
+
+.number {
+  color: var(--terracotta);
+  font-size: 15px;
+}
+
+.itemCopy {
+  display: grid;
+  gap: 5px;
+}
+
+.itemCopy strong {
+  font-size: 14px;
+}
+
+.itemCopy > span {
+  color: var(--blue-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.arrow {
+  color: var(--terracotta);
+  font-size: 17px;
+  text-align: center;
+}
+
+/* Opção cuja tela ainda não existe: não reage ao mouse e mostra "Em breve" */
+.disabled:hover {
+  background: none;
+}
+
+.soon {
+  padding: 6px 10px;
+  color: var(--terracotta);
+  background: var(--yellow);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    min-height: 54px;
+    padding: 0 17px;
+  }
+
+  .content {
+    padding: 34px 17px 24px;
+  }
+
+  .content h1 {
+    font-size: 33px;
+  }
+
+  .menuItem {
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}

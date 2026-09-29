@@ -17,3 +17,14 @@
   margin-bottom: 1.5rem;
   color: #b93400;
 }
+
+.error {
+  margin-top: 1rem;
+  color: #ba3801;
+  text-align: center;
+}
+
+.demoInfo {
+  margin-top: 1rem;
+  color: #4a69b3;
+}
