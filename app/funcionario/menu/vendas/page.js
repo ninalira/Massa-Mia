@@ -69,7 +69,7 @@ export default async function VendasRoute({ searchParams }) {
     <main className={styles.page}>
       <header className={styles.topbar}>
         <Link className={styles.brand} href="/funcionario/menu">Massa Mia <span>/</span> Vendas</Link>
-        <Link className={styles.menuLink} href="/funcionario/menu">Menu do funcionário <span aria-hidden="true">↗</span></Link>
+        <Link className={styles.menuLink} href="/funcionario/menu/vendas/nova">Registrar venda <span aria-hidden="true">+</span></Link>
       </header>
 
       <div className={styles.content}>
