@@ -18,10 +18,10 @@ const pages = [
     description: 'Consulte as vendas registradas e remova uma venda lançada errada.',
   },
   {
-    href: null,
+    href: '/funcionario/menu/agendarEvento',
     number: '03',
     title: 'Agendar evento',
-    description: 'Cadastre um novo evento com capacidade, ingresso e buffet.',
+    description: 'Informe data, responsável, capacidade e valor do ingresso.',
   },
   {
     href: '/funcionario/menu/eventos',
