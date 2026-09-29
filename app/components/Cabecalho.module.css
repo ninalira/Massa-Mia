@@ -1,0 +1,47 @@
+/* Faixa amarela do topo */
+.cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  min-height: 80px;
+  padding: 12px 64px;
+  background: #ffec89;
+  color: #2d4170;
+}
+
+/* Caminho (Proprietário › Vendas). O margin-right: auto empurra os botões para a direita */
+.caminho {
+  margin-right: auto;
+  color: #8f2b01;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+/* O padding aumenta a área de toque do link */
+.caminho a {
+  padding: 10px 0;
+  text-decoration: underline;
+}
+
+/* Botões "Voltar ao painel" e "Sair" */
+.voltar,
+.sair {
+  padding: 10px 18px;
+  border: 2px solid #2d4170;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.voltar {
+  background: #2d4170;
+  color: #ffffff;
+}
+
+/* Celular: menos espaço nas laterais */
+@media (max-width: 640px) {
+  .cabecalho {
+    padding: 10px 16px;
+  }
+}

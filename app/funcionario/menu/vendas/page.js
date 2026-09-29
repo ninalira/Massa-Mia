@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from '../../../proprietario/menu/vendas/page.module.css';
+import Cabecalho from '@/app/components/Cabecalho';
 import { listarVendas, real, dataBR, NOMES } from '@/lib/backend';
 
 const columns = [
@@ -67,10 +68,7 @@ export default async function VendasRoute({ searchParams }) {
 
   return (
     <main className={styles.page}>
-      <header className={styles.topbar}>
-        <Link className={styles.brand} href="/funcionario/menu">Massa Mia <span>/</span> Vendas</Link>
-        <Link className={styles.menuLink} href="/funcionario/menu/vendas/nova">Registrar venda <span aria-hidden="true">+</span></Link>
-      </header>
+      <Cabecalho area="Funcionário" painel="/funcionario/menu" pagina="Vendas" />
 
       <div className={styles.content}>
         <p className={styles.eyebrow}>ROTINA DO RESTAURANTE</p>

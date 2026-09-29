@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from '../../../proprietario/menu/eventos/page.module.css';
+import Cabecalho from '@/app/components/Cabecalho';
 import { listarEventos, real, dataBR, NOMES } from '@/lib/backend';
 
 const columns = [
@@ -71,10 +72,7 @@ export default async function EventosRoute({ searchParams }) {
 
   return (
     <main className={styles.page}>
-      <header className={styles.topbar}>
-        <Link className={styles.brand} href="/funcionario/menu">Massa Mia <span>/</span> Eventos</Link>
-        <Link className={styles.menuLink} href="/funcionario/menu">Menu do funcionário <span aria-hidden="true">↗</span></Link>
-      </header>
+      <Cabecalho area="Funcionário" painel="/funcionario/menu" pagina="Eventos" />
 
       <div className={styles.content}>
         <p className={styles.eyebrow}>ROTINA DO RESTAURANTE</p>

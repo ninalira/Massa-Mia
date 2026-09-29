@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import styles from './page.module.css';
+import Cabecalho from '@/app/components/Cabecalho';
 import { listarEventos, real, dataBR, NOMES } from '@/lib/backend';
+
+// Etiqueta colorida de cada status (funciona como um switch do Java: status → cor)
+const STATUS_COLORS = { REALIZADO: styles.blue, AGENDADO: styles.yellow, CANCELADO: styles.orange };
 
 const columns = [
   { key: 'number', label: 'Nº', sortable: true },
@@ -34,6 +38,7 @@ export default async function EventosPage({ searchParams }) {
 
     return {
       id: evento.objectId,
+      statusCode: evento.status,
       values: {
         number: evento.numEvento,
         date: dataBR(evento.data),
@@ -71,10 +76,7 @@ export default async function EventosPage({ searchParams }) {
 
   return (
     <main className={styles.page}>
-      <header className={styles.topbar}>
-        <Link className={styles.brand} href="/proprietario/menu">Massa Mia <span>/</span> Eventos</Link>
-        <Link className={styles.menuLink} href="/proprietario/menu">Menu do proprietário <span aria-hidden="true">↗</span></Link>
-      </header>
+      <Cabecalho area="Proprietário" painel="/proprietario/menu" pagina="Eventos" />
 
       <div className={styles.content}>
         <p className={styles.eyebrow}>GESTÃO DO RESTAURANTE</p>
@@ -98,6 +100,7 @@ export default async function EventosPage({ searchParams }) {
                     return (
                       <th
                         aria-sort={active ? (direction === 'asc' ? 'ascending' : 'descending') : 'none'}
+                        className={active ? styles.activeColumn : undefined}
                         key={column.key}
                         scope="col"
                       >
@@ -129,6 +132,8 @@ export default async function EventosPage({ searchParams }) {
                             <strong>{row.values.eventType}</strong>
                             <span className={styles.subText}>{row.values.eventName}</span>
                           </>
+                        ) : column.key === 'status' ? (
+                          <span className={STATUS_COLORS[row.statusCode]}>{row.values.status}</span>
                         ) : row.values[column.key]}
                       </td>
                     ))}

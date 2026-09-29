@@ -1,135 +1,163 @@
+/* ---------- Cores (como constantes do Java) e fundo da tela ---------- */
 .page {
-  --blue: #4a69b3;
+  --blue: #2d4170;
+  --blue-text: #3b5590;
   --yellow: #ffec89;
-  --terracotta: #ba3801;
-  --cream: #fff3e1;
-  --blue-soft: rgb(74 105 179 / 16%);
-  --blue-muted: rgb(74 105 179 / 72%);
+  --yellow-light: #fff5ad;
+  --terracotta-dark: #8f2b01;
+  --cream: #fff8ec;
+  --card-border: #eadfca;
   min-height: 100vh;
   color: var(--blue);
   background: var(--cream);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-texto), sans-serif;
 }
 
-.topbar {
-  display: flex;
-  min-height: 62px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 clamp(20px, 5vw, 76px);
-  border-bottom: 1px solid var(--blue-soft);
-}
-
-.brand,
-.menuLink {
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.brand span,
-.menuLink span {
-  margin: 0 5px;
-  color: var(--terracotta);
-}
-
+/* ---------- Título da tela ---------- */
 .content {
-  width: min(1120px, 100%);
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 42px clamp(20px, 5vw, 76px) 30px;
+  padding: 40px 64px;
 }
 
 .eyebrow {
   margin: 0 0 8px;
-  color: var(--terracotta);
-  font-size: 10px;
-  font-weight: 700;
+  color: var(--terracotta-dark);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 .content h1 {
   margin: 0;
-  font-size: 38px;
-  font-weight: 500;
+  font-family: var(--font-titulo), sans-serif;
+  font-size: 44px;
+  font-weight: 600;
   line-height: 1.1;
 }
 
 .description {
-  margin: 10px 0 0;
-  color: var(--blue-muted);
-  font-size: 13px;
-  line-height: 1.6;
+  margin: 8px 0 0;
+  color: var(--blue-text);
+  font-size: 19px;
 }
 
+/* ---------- "Todos os eventos" e o total de registros ---------- */
 .listSection {
-  margin-top: 34px;
+  margin-top: 28px;
 }
 
 .sectionHeading {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 14px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .sectionHeading h2 {
   margin: 0;
-  font-size: 20px;
-  font-weight: 500;
+  font-family: var(--font-titulo), sans-serif;
+  font-size: 26px;
+  font-weight: 600;
 }
 
 .sectionHeading span {
-  color: var(--blue-muted);
-  font-size: 11px;
+  padding: 8px 16px;
+  border: 2px solid var(--card-border);
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 17px;
+  font-weight: 800;
 }
 
+/* ---------- Tabela dentro de um cartão branco ---------- */
 .tableWrap {
   overflow-x: auto;
-  border: 1px solid var(--blue-soft);
-  background: rgb(255 243 225 / 82%);
+  border: 2px solid var(--card-border);
+  border-radius: 16px;
+  background: #ffffff;
 }
 
 .tableWrap table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 11px;
+  font-size: 16px;
   text-align: left;
 }
 
 .tableWrap th,
 .tableWrap td {
-  min-width: 100px;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--blue-soft);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.tableWrap td {
   white-space: nowrap;
 }
 
 .tableWrap thead th {
-  color: var(--terracotta);
-  background: var(--yellow);
-  font-size: 10px;
-  font-weight: 700;
+  background: var(--yellow-light);
+  font-weight: 800;
 }
 
+/* Coluna que está ordenando a tabela fica mais amarela */
+.tableWrap thead th.activeColumn {
+  background: var(--yellow);
+}
+
+/* Título de coluna que ordena ao clicar */
 .sortLink {
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
   gap: 6px;
 }
 
-.sortLink:hover,
-.sortLink:focus-visible {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
 .sortLink span {
-  color: var(--blue);
-  font-size: 12px;
+  color: var(--terracotta-dark);
 }
 
+/* Coluna Evento: tipo em negrito e nome embaixo, menor */
+.subText {
+  display: block;
+  margin-top: 2px;
+  color: var(--blue-text);
+  font-size: 15px;
+}
+
+/* ---------- Etiqueta colorida do status ---------- */
+/* As três cores têm o mesmo formato de etiqueta */
+.blue,
+.yellow,
+.orange {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.blue {
+  background: #dbe4f4;
+  color: #1f2e50;
+}
+
+.yellow {
+  background: var(--yellow-light);
+  color: #651f01;
+}
+
+.orange {
+  background: #fdece3;
+  color: var(--terracotta-dark);
+}
+
+/* ---------- Mensagem quando não há dados ---------- */
 .emptyState {
   height: 156px;
-  color: var(--blue-muted);
+  color: var(--blue-text);
   text-align: center;
   white-space: normal !important;
 }
@@ -141,37 +169,17 @@
 
 .emptyState strong {
   margin-bottom: 6px;
-  color: var(--blue);
-  font-size: 12px;
+  font-size: 18px;
 }
 
-.emptyState span {
-  font-size: 11px;
-}
-
-.subText {
-  display: block;
-  margin-top: 3px;
-  color: var(--blue-muted);
-  font-size: 10px;
-}
-
+/* ---------- Celular ---------- */
 @media (max-width: 640px) {
-  .topbar {
-    min-height: 54px;
-    padding: 0 17px;
-  }
-
   .content {
-    padding: 30px 17px 24px;
+    padding: 28px 16px;
   }
 
   .content h1 {
     font-size: 34px;
-  }
-
-  .menuLink {
-    font-size: 10px;
   }
 
   .tableWrap table {
