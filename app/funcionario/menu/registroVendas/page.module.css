@@ -296,6 +296,22 @@
 	padding-top: 11px;
 }
 
+.dropdown {
+	border-color: #eadfca;
+	border-radius: 6px;
+}
+
+.option {
+	color: #2d4170;
+	font-family: var(--font-texto), sans-serif;
+	font-size: 15px;
+}
+
+.option[data-combobox-selected] {
+	color: #2d4170;
+	background: #ffec89;
+}
+
 .formFooter {
 	display: flex;
 	align-items: center;

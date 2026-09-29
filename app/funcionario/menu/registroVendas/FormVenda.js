@@ -116,6 +116,7 @@ export default function FormVenda({ produtos }) {
 						onChange={(e) => setCliente(e.currentTarget.value)}
 					/>
 					<Select
+            classNames={{ dropdown: styles.dropdown, option: styles.option }}
 						allowDeselect={false}
 						className={styles.field}
 						data={[
@@ -128,6 +129,7 @@ export default function FormVenda({ produtos }) {
 						onChange={setFormaPagamento}
 					/>
 					<Select
+            classNames={{ dropdown: styles.dropdown, option: styles.option }}
 						allowDeselect={false}
 						className={styles.field}
 						data={[
@@ -140,6 +142,7 @@ export default function FormVenda({ produtos }) {
 					/>
 					{servido && (
 						<Select
+              classNames={{ dropdown: styles.dropdown, option: styles.option }}
 							allowDeselect={false}
 							className={styles.field}
 							data={[5, 4, 3, 2, 1].map((n) => ({ value: String(n), label: `${n} de 5` }))}
@@ -162,6 +165,7 @@ export default function FormVenda({ produtos }) {
 						{itens.map((item, i) => (
 							<div className={styles.itemRow} key={i}>
 								<Select
+                  classNames={{ dropdown: styles.dropdown, option: styles.option }}
 									data={opcoesProduto}
 									label="Produto"
 									nothingFoundMessage="Nenhum produto encontrado"
@@ -213,7 +217,6 @@ export default function FormVenda({ produtos }) {
 				)}
 
 				<div className={styles.formFooter}>
-					<span>O número da venda é atribuído pelo backend após o registro.</span>
 					<Button className={styles.submitButton} color="massaVermelho" loading={enviando} type="submit">
 						Registrar venda <span aria-hidden="true">↗</span>
 					</Button>
