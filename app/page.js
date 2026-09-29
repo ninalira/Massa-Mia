@@ -8,22 +8,27 @@ import styles from './page.module.css';
 export default function Home() {
   return (
     <Center className={styles.page}>
-      <Stack align="center" gap={40}>
-        <Image
-          src="/logo.jpg"
-          alt="Massa Mia"
-          width={1584}
-          height={396}
-          priority
-          className={styles.logo}
-        />
+      <Stack align="center" gap={48}>
+        <Stack align="center" gap={8}>
+          <Image
+            src="/logo.jpg"
+            alt="Massa Mia"
+            width={1584}
+            height={396}
+            priority
+            className={styles.logo}
+          />
+          <p className={styles.subtitle}>Sistema de gestão da pizzaria</p>
+        </Stack>
 
-        <Stack gap="md" w={280}>
+        <Stack gap="md" w={360} align="stretch">
+          <p className={styles.question}>Quem vai entrar?</p>
+
           <Button
             component={Link}
             href="/proprietario"
-            size="lg"
             color="massaVermelho"
+            className={`${styles.button} ${styles.buttonVermelho}`}
             fullWidth
           >
             Proprietário
@@ -32,8 +37,8 @@ export default function Home() {
           <Button
             component={Link}
             href="/funcionario"
-            size="lg"
             color="massaAzul"
+            className={`${styles.button} ${styles.buttonAzul}`}
             fullWidth
           >
             Funcionário

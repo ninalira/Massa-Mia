@@ -1,13 +1,49 @@
 .page {
+  /* Os componentes do Mantine (os botões) passam a usar a fonte nova só nesta tela */
+  --mantine-font-family: var(--font-texto), sans-serif;
   min-height: 100vh;
   padding: 2rem;
-  background:
-#ffec89;
+  background: #ffec89;
+  font-family: var(--font-texto), sans-serif;
 }
 
 .logo {
   width: 100%;
-  max-width: 300px;
+  max-width: 520px;
   height: auto;
+}
 
+.subtitle {
+  color: #8f2b01;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.question {
+  color: #2d4170;
+  font-family: var(--font-titulo), sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.button {
+  height: 60px;
+  border-radius: 14px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* "Sombra" embaixo do botão, num tom mais escuro da mesma cor */
+.buttonVermelho {
+  box-shadow: 0 4px 0 #8f2b01;
+}
+
+.buttonAzul {
+  box-shadow: 0 4px 0 #2d4170;
+}
+
+.button:focus-visible {
+  outline: 3px solid #2d4170;
+  outline-offset: 3px;
 }

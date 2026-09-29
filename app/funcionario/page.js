@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Paper, Title, TextInput, PasswordInput, Button, Text } from '@mantine/core';
@@ -19,7 +20,7 @@ export default function LoginFuncionario() {
     e.preventDefault();
 
     if (login.trim() !== DEMO_LOGIN || senha !== DEMO_PASSWORD) {
-      setErro('Login ou senha inválidos. Confira os dados de demonstração.');
+      setErro('Confira os dados de demonstração abaixo.');
       return;
     }
 
@@ -27,19 +28,30 @@ export default function LoginFuncionario() {
     router.push('/funcionario/menu');
   }
 
+  // Mesmo visual para os dois campos. Com erro, o Mantine marca o campo (data-error) e a borda fica vermelha.
+  const campo = { label: styles.label, input: styles.input };
+
   return (
     <main className={styles.container}>
-      <Paper className={styles.card} shadow="md" p="xl" radius="md">
-        <Title order={2} className={styles.title}>
+      <Link href="/" aria-label="Massa Mia — voltar ao início">
+        <Image src="/logo.jpg" alt="Massa Mia" width={1584} height={396} priority className={styles.logo} />
+      </Link>
+
+      <Paper className={styles.card} radius={20}>
+        <p className={styles.eyebrow}>ROTINA DO RESTAURANTE</p>
+        <Title order={1} className={styles.title}>
           Entrar como Funcionário
         </Title>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <TextInput
             label="Login"
             placeholder="Seu login"
+            size="lg"
+            classNames={campo}
             value={login}
             autoComplete="username"
+            error={Boolean(erro)}
             onChange={(e) => {
               setLogin(e.currentTarget.value);
               setErro('');
@@ -49,29 +61,42 @@ export default function LoginFuncionario() {
           <PasswordInput
             label="Senha"
             placeholder="Sua senha"
-            mt="md"
+            size="lg"
+            classNames={campo}
             value={senha}
             autoComplete="current-password"
+            error={Boolean(erro)}
             onChange={(e) => {
               setSenha(e.currentTarget.value);
               setErro('');
             }}
             required
           />
-          <Button type="submit" fullWidth mt="xl" color="massaAzul">
+
+          {erro && (
+            <div className={styles.error} role="alert">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="7" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <p><strong>Login ou senha inválidos.</strong> {erro}</p>
+            </div>
+          )}
+
+          <Button type="submit" fullWidth color="massaAzul" className={`${styles.button} ${styles.buttonAzul}`}>
             Entrar
           </Button>
         </form>
 
-        {erro && <Text className={styles.error} role="alert" size="sm">{erro}</Text>}
+        <div className={styles.demoInfo}>
+          <p className={styles.demoTitle}>Acesso de demonstração</p>
+          <Text className={styles.demoText}>
+            Login <strong>funcionario</strong> · Senha <strong>massa123</strong>
+          </Text>
+        </div>
 
-        <Text className={styles.demoInfo} size="sm" ta="center">
-          Acesso de demonstração: <strong>funcionario</strong> / <strong>massa123</strong>
-        </Text>
-
-        <Text size="sm" mt="md" ta="center">
-          <Link href="/">Voltar ao início</Link>
-        </Text>
+        <Link href="/" className={styles.backLink}>Voltar ao início</Link>
       </Paper>
     </main>
   );
