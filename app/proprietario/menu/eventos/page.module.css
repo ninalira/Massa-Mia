@@ -21,37 +21,15 @@
 }
 
 .brand,
-.pending,
 .menuLink {
   font-size: 12px;
   font-weight: 700;
 }
 
-.brand span {
-  padding: 0 7px;
-  color: var(--terracotta);
-}
-
+.brand span,
 .menuLink span {
-  margin-left: 5px;
+  margin: 0 5px;
   color: var(--terracotta);
-}
-
-.pending {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 10px;
-  color: var(--terracotta);
-  background: var(--yellow);
-  font-size: 10px;
-}
-
-.pending i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--terracotta);
 }
 
 .content {
@@ -132,57 +110,28 @@
   font-weight: 700;
 }
 
-.sortButton {
+.sortLink {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  border: 0;
-  padding: 0;
-  color: inherit;
-  background: transparent;
-  font: inherit;
-  font-weight: inherit;
-  text-align: left;
-  cursor: pointer;
 }
 
-.sortButton:hover,
-.sortButton:focus-visible {
+.sortLink:hover,
+.sortLink:focus-visible {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.sortButton span {
+.sortLink span {
   color: var(--blue);
   font-size: 12px;
 }
 
-.tableWrap .emptyState {
+.emptyState {
   height: 156px;
   color: var(--blue-muted);
   text-align: center;
-  white-space: normal;
-}
-
-/* Texto longo (itens da venda) e cabeçalhos longos quebram linha, para a tabela caber sem rolar no desktop */
-.tableWrap .longText,
-.tableWrap thead th {
-  white-space: normal;
-}
-
-.tableWrap .longText {
-  min-width: 200px;
-}
-
-.subText {
-  display: block;
-  margin-top: 3px;
-  color: var(--blue-muted);
-  font-size: 10px;
-}
-
-.tableWrap td strong {
-  font-weight: 700;
+  white-space: normal !important;
 }
 
 .emptyState strong,
@@ -198,6 +147,13 @@
 
 .emptyState span {
   font-size: 11px;
+}
+
+.subText {
+  display: block;
+  margin-top: 3px;
+  color: var(--blue-muted);
+  font-size: 10px;
 }
 
 @media (max-width: 640px) {
