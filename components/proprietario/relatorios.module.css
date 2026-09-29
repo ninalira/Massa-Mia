@@ -202,9 +202,9 @@
 
 .winnerResult {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 12px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
   margin-top: 17px;
 }
 
@@ -218,6 +218,10 @@
 .winnerResult span {
   color: var(--blue-muted);
   font-size: 10px;
+}
+
+.winnerResult .winnerName {
+  color: var(--blue-muted);
 }
 
 .totalCard {

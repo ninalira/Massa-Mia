@@ -132,6 +132,31 @@
   font-weight: 700;
 }
 
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  font-weight: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sortButton:hover,
+.sortButton:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sortButton span {
+  color: var(--blue);
+  font-size: 12px;
+}
+
 .tableWrap .emptyState {
   height: 156px;
   color: var(--blue-muted);
@@ -154,6 +179,10 @@
   margin-top: 3px;
   color: var(--blue-muted);
   font-size: 10px;
+}
+
+.tableWrap td strong {
+  font-weight: 700;
 }
 
 .emptyState strong,

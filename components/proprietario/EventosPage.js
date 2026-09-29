@@ -1,6 +1,19 @@
 import Link from 'next/link';
 import styles from './pages.module.css';
+import SortableTable from './SortableTable';
 import { listarEventos, real, dataBR, NOMES } from '@/lib/backend';
+
+const columns = [
+  { key: 'number', label: 'Nº', type: 'number', sortable: true },
+  { key: 'date', label: 'Data', type: 'text', sortable: true },
+  { key: 'eventType', label: 'Evento', type: 'text', sortable: true, subKey: 'eventName' },
+  { key: 'responsible', label: 'Responsável', type: 'text', sortable: true },
+  { key: 'attendance', label: 'Público / capacidade', type: 'number', sortable: true },
+  { key: 'buffet', label: 'Buffet', type: 'number', sortable: true },
+  { key: 'total', label: 'Valor (ingressos + buffet)', type: 'number', sortable: true },
+  { key: 'assessment', label: 'Avaliação', sortable: false },
+  { key: 'status', label: 'Status', type: 'text', sortable: true },
+];
 
 export default async function EventosPage() {
   let eventos = [];
@@ -10,6 +23,35 @@ export default async function EventosPage() {
   } catch (e) {
     erro = e.message;
   }
+
+  const rows = eventos.map((e) => {
+    const status = NOMES[e.status] || e.status;
+    const realizado = e.status === 'REALIZADO';
+
+    return {
+      id: e.objectId,
+      number: e.numEvento,
+      date: dataBR(e.data),
+      eventType: e.tipo || e.nome,
+      eventName: e.nome || '',
+      responsible: e.responsavel || '—',
+      attendance: (realizado ? e.publicoReal : '—') + ' / ' + (e.capacidade ?? '—'),
+      buffet: e.buffet > 0 ? real(e.buffet) : 'Sem buffet',
+      total: real(e.total),
+      assessment: e.avaliacao > 0 ? e.avaliacao + ' de 5' : '—',
+      status,
+      sortValues: {
+        number: e.numEvento,
+        date: e.data || '',
+        eventType: e.tipo || e.nome || '',
+        responsible: e.responsavel || '',
+        attendance: realizado ? e.publicoReal : 0,
+        buffet: e.buffet,
+        total: e.total,
+        status,
+      },
+    };
+  });
 
   return (
     <main className={styles.page}>
@@ -29,50 +71,13 @@ export default async function EventosPage() {
             <span>{erro ? '—' : eventos.length} registros</span>
           </div>
 
-          <div className={styles.tableWrap}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Nº</th>
-                  <th>Data</th>
-                  <th>Evento</th>
-                  <th>Responsável</th>
-                  <th>Público / capacidade</th>
-                  <th>Buffet</th>
-                  <th>Valor (ingressos + buffet)</th>
-                  <th>Avaliação</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {eventos.length === 0 ? (
-                  <tr>
-                    <td colSpan={9} className={styles.emptyState}>
-                      <strong>{erro ? 'Não foi possível carregar os eventos' : 'Nenhum evento para exibir'}</strong>
-                      <span>{erro || 'Os eventos aparecerão aqui quando forem registrados.'}</span>
-                    </td>
-                  </tr>
-                ) : (
-                  eventos.map((e) => (
-                    <tr key={e.objectId}>
-                      <td>{e.numEvento}</td>
-                      <td>{dataBR(e.data)}</td>
-                      <td>
-                        {e.nome}
-                        <span className={styles.subText}>{e.tipo}</span>
-                      </td>
-                      <td>{e.responsavel || '—'}</td>
-                      <td>{e.status === 'REALIZADO' ? e.publicoReal : '—'} / {e.capacidade ?? '—'}</td>
-                      <td>{e.buffet > 0 ? real(e.buffet) : 'Sem buffet'}</td>
-                      <td>{real(e.total)}</td>
-                      <td>{e.avaliacao > 0 ? e.avaliacao + ' de 5' : '—'}</td>
-                      <td>{NOMES[e.status] || e.status}</td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+          <SortableTable
+            columns={columns}
+            emptyMessage="Os eventos aparecerão aqui quando forem registrados."
+            emptyTitle="Nenhum evento para exibir"
+            error={erro}
+            rows={rows}
+          />
         </section>
       </div>
     </main>

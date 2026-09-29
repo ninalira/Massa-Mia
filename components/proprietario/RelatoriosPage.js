@@ -89,7 +89,8 @@ export default async function RelatoriosPage() {
                 <h3>Evento com maior receita de buffet</h3>
                 <p className={styles.metricDetail}>Maior receita entre os buffets do restaurante</p>
                 <div className={styles.winnerResult}>
-                  <strong>{p?.[7] ? p[7].nome : 'Evento —'}</strong>
+                  <strong>{p?.[7] ? p[7].tipo || p[7].nome : 'Evento —'}</strong>
+                  {p?.[7]?.nome && <span className={styles.winnerName}>Evento: {p[7].nome}</span>}
                   <span>Receita do buffet</span>
                   <b>{p?.[7] ? real(p[7].valorBuffet) : 'R$ —'}</b>
                 </div>

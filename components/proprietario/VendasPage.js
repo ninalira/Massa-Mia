@@ -1,6 +1,18 @@
 import Link from 'next/link';
 import styles from './pages.module.css';
+import SortableTable from './SortableTable';
 import { listarVendas, real, dataBR, NOMES } from '@/lib/backend';
+
+const columns = [
+  { key: 'number', label: 'Nº', type: 'number', sortable: true },
+  { key: 'date', label: 'Data', type: 'text', sortable: true },
+  { key: 'client', label: 'Cliente', type: 'text', sortable: true },
+  { key: 'items', label: 'Itens', sortable: false, className: styles.longText },
+  { key: 'payment', label: 'Pagamento', type: 'text', sortable: true },
+  { key: 'status', label: 'Status', type: 'text', sortable: true },
+  { key: 'assessment', label: 'Avaliação / motivo', sortable: false },
+  { key: 'total', label: 'Total', type: 'number', sortable: true },
+];
 
 export default async function VendasPage() {
   let vendas = [];
@@ -10,6 +22,31 @@ export default async function VendasPage() {
   } catch (e) {
     erro = e.message;
   }
+
+  const rows = vendas.map((v) => {
+    const status = NOMES[v.status] || v.status;
+    const pagamento = NOMES[v.formaPagamento] || '—';
+
+    return {
+      id: v.objectId,
+      number: v.numPedido,
+      date: dataBR(v.data),
+      client: v.cliente || '—',
+      items: v.itens.map((i) => i.quantidade + '× ' + i.descricao).join(', ') || '—',
+      payment: pagamento,
+      status,
+      assessment: v.status === 'CANCELADO' ? v.motivoCancelamento : v.avaliacao > 0 ? v.avaliacao + ' de 5' : '—',
+      total: real(v.total),
+      sortValues: {
+        number: v.numPedido,
+        date: v.data || '',
+        client: v.cliente || '',
+        payment: pagamento,
+        status,
+        total: v.total,
+      },
+    };
+  });
 
   return (
     <main className={styles.page}>
@@ -29,49 +66,13 @@ export default async function VendasPage() {
             <span>{erro ? '—' : vendas.length} registros</span>
           </div>
 
-          <div className={styles.tableWrap}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Nº</th>
-                  <th>Data</th>
-                  <th>Cliente</th>
-                  <th>Itens</th>
-                  <th>Pagamento</th>
-                  <th>Status</th>
-                  <th>Avaliação / motivo</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {vendas.length === 0 ? (
-                  <tr>
-                    <td colSpan={8} className={styles.emptyState}>
-                      <strong>{erro ? 'Não foi possível carregar as vendas' : 'Nenhuma venda para exibir'}</strong>
-                      <span>{erro || 'As vendas aparecerão aqui quando forem registradas.'}</span>
-                    </td>
-                  </tr>
-                ) : (
-                  vendas.map((v) => (
-                    <tr key={v.objectId}>
-                      <td>{v.numPedido}</td>
-                      <td>{dataBR(v.data)}</td>
-                      <td>{v.cliente || '—'}</td>
-                      <td className={styles.longText}>
-                        {v.itens.map((i) => i.quantidade + '× ' + i.descricao).join(', ') || '—'}
-                      </td>
-                      <td>{NOMES[v.formaPagamento] || '—'}</td>
-                      <td>{NOMES[v.status] || v.status}</td>
-                      <td>
-                        {v.status === 'CANCELADO' ? v.motivoCancelamento : v.avaliacao > 0 ? v.avaliacao + ' de 5' : '—'}
-                      </td>
-                      <td>{real(v.total)}</td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+          <SortableTable
+            columns={columns}
+            emptyMessage="As vendas aparecerão aqui quando forem registradas."
+            emptyTitle="Nenhuma venda para exibir"
+            error={erro}
+            rows={rows}
+          />
         </section>
       </div>
     </main>
