@@ -6,7 +6,7 @@ import styles from './page.module.css';
 // Quando uma tela ficar pronta, é só colocar o href dela aqui (vira link).
 const pages = [
   {
-    href: null,
+    href: 'funcionario/menu/registrarVendas',
     number: '01',
     title: 'Registrar venda',
     description: 'Lance uma venda do salão com os itens e a forma de pagamento.',
