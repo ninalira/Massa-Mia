@@ -11,7 +11,7 @@ const pages = [
     description: 'Lance uma venda do salão com os itens e a forma de pagamento.',
   },
   {
-    href: null,
+    href: '/funcionario/menu/vendas',
     number: '02',
     title: 'Vendas',
     description: 'Consulte as vendas registradas e remova uma venda lançada errada.',
@@ -23,7 +23,7 @@ const pages = [
     description: 'Cadastre um novo evento com capacidade, ingresso e buffet.',
   },
   {
-    href: null,
+    href: '/funcionario/menu/eventos',
     number: '04',
     title: 'Eventos',
     description: 'Atualize o status dos eventos (realizado ou cancelado) e remova eventos.',
