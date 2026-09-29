@@ -139,6 +139,23 @@
   white-space: normal;
 }
 
+/* Texto longo (itens da venda) e cabeçalhos longos quebram linha, para a tabela caber sem rolar no desktop */
+.tableWrap .longText,
+.tableWrap thead th {
+  white-space: normal;
+}
+
+.tableWrap .longText {
+  min-width: 200px;
+}
+
+.subText {
+  display: block;
+  margin-top: 3px;
+  color: var(--blue-muted);
+  font-size: 10px;
+}
+
 .emptyState strong,
 .emptyState span {
   display: block;

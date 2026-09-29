@@ -1,5 +1,5 @@
-import ReportsPage from '@/app/relatorios/page';
+import RelatoriosPage from '@/components/proprietario/RelatoriosPage';
 
 export default function RelatoriosRoute() {
-  return <ReportsPage />;
+  return <RelatoriosPage />;
 }

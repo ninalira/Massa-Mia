@@ -15,6 +15,19 @@ const BEBIDAS = ['Refrigerante Cola', 'Suco de Laranja', 'Água com Gás', 'Chá
 const MOTIVOS_CANCELAMENTO = ['Cliente desistiu', 'Pagamento não aprovado', 'Pedido duplicado'];
 const TIPOS_EVENTO = ['Show', 'Aniversário', 'Workshop', 'Palestra', 'Conferência', 'Casamento'];
 const PRECO_CARDAPIO = { M: 30, G: 38, Lata: 6, '1L': 9 };
+// Campos que não existiam no Java (data, cliente, pagamento, responsável): nomes fictícios.
+const CLIENTES = ['Ana Souza', 'Bruno Lima', 'Carla Mendes', 'Diego Rocha', 'Elisa Castro',
+  'Felipe Nunes', 'Gabriela Alves', 'Henrique Dias', 'Isabela Pires', 'João Martins'];
+const PAGAMENTOS = ['PIX', 'DINHEIRO', 'CARTAO'];
+const RESPONSAVEIS = ['Marina Costa', 'Rafael Teixeira', 'Juliana Freitas', 'Lucas Barbosa', 'Paula Ribeiro'];
+const PRIMEIRA_SEGUNDA = '2026-03-02';
+
+// Soma dias a uma data "AAAA-MM-DD" (como LocalDate.plusDays do Java).
+function somarDias(data, dias) {
+  const d = new Date(data + 'T12:00:00Z');
+  d.setUTCDate(d.getUTCDate() + dias);
+  return d.toISOString().slice(0, 10);
+}
 
 const produtos = {}; // cardápio: um Produto por categoria + nome + tamanho
 const pedidos = [];
@@ -37,7 +50,14 @@ function criarItem(produto, quantidade, precoUnitario, classeDono, dono) {
 
 // 2. Montar os 160 pedidos (mesmas fórmulas do Java)
 for (let id = 1; id <= 160; id++) {
-  const pedido = { numPedido: id, diaSemana: ((id - 1) % 7) + 1 };
+  const pedido = {
+    numPedido: id,
+    diaSemana: ((id - 1) % 7) + 1,
+    // Um pedido por dia a partir de uma segunda: a data cai sempre no diaSemana acima
+    data: somarDias(PRIMEIRA_SEGUNDA, id - 1),
+    cliente: CLIENTES[id % 10],
+    formaPagamento: PAGAMENTOS[id % 3],
+  };
 
   if (id % 5 !== 0) {
     pedido.status = 'SERVIDO';
@@ -69,6 +89,9 @@ for (let id = 1; id <= 40; id++) {
     nome: 'Evento Modelo ' + id,
     tipo: TIPOS_EVENTO[id % 6],
     diaSemana: ((id + 1) % 7) + 1,
+    // Um evento por semana; (id + 1) % 7 dias depois da segunda cai no diaSemana acima
+    data: somarDias(PRIMEIRA_SEGUNDA, 7 * (id - 1) + ((id + 1) % 7)),
+    responsavel: RESPONSAVEIS[id % 5],
     capacidade,
     precoIngresso: 40 + (id % 5) * 5,
   };
