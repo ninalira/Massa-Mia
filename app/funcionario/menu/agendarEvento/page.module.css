@@ -175,6 +175,61 @@
 	padding: 25px 0 30px;
 }
 
+.buffet {
+	margin-bottom: 25px;
+}
+
+.items {
+	display: grid;
+	gap: 16px;
+	padding-top: 20px;
+}
+
+.itemRow {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 150px auto;
+	align-items: end;
+	gap: 14px;
+}
+
+.productSelect,
+.quantityInput {
+	min-width: 0;
+}
+
+.removeItemButton,
+.addItemButton {
+	min-height: 44px;
+	font-family: var(--font-texto), sans-serif;
+	font-weight: 800;
+}
+
+.totalBox {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	padding: 14px 16px;
+	border: 1px solid var(--line);
+	border-radius: 6px;
+	background: #f8f5ef;
+	font-size: 14px;
+	font-weight: 800;
+}
+
+.totalBox strong {
+	color: var(--terracotta-dark);
+	font-size: 18px;
+}
+
+.dropdown {
+	background: #ffffff;
+}
+
+.option {
+	color: var(--blue);
+}
+
 .field {
 	min-width: 0;
 }
@@ -343,6 +398,15 @@
 		grid-template-columns: minmax(0, 1fr);
 		gap: 18px;
 		padding: 21px 0 24px;
+	}
+
+	.itemRow {
+		grid-template-columns: minmax(0, 1fr) 105px;
+		gap: 12px;
+	}
+
+	.removeItemButton {
+		grid-column: 1 / -1;
 	}
 
 	.fullWidth {

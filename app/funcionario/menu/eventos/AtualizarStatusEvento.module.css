@@ -1,0 +1,40 @@
+.wrap {
+	display: grid;
+	gap: 4px;
+}
+
+.label select {
+	min-height: 38px;
+	max-width: 160px;
+	padding: 0 9px;
+	border: 1px solid #d9ccb2;
+	border-radius: 6px;
+	color: #2d4170;
+	background: #ffffff;
+	font: inherit;
+	font-weight: 700;
+}
+
+.label select:focus-visible {
+	outline: 3px solid #3b5590;
+	outline-offset: 2px;
+}
+
+.error {
+	max-width: 180px;
+	color: #8f2b01;
+	font-size: 12px;
+	white-space: normal;
+}
+
+.srOnly {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}

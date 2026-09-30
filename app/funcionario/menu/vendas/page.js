@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import styles from '../../../proprietario/menu/vendas/page.module.css';
 import Cabecalho from '@/app/components/Cabecalho';
+import BotaoRemover from '@/app/components/BotaoRemover';
+import remocao from '@/app/components/BotaoRemover.module.css';
 import { listarVendas, real, dataBR, NOMES } from '@/lib/backend';
 
 const columns = [
@@ -12,6 +14,7 @@ const columns = [
   { key: 'status', label: 'Status', sortable: true },
   { key: 'assessment', label: 'Avaliação / motivo', sortable: false },
   { key: 'total', label: 'Total', sortable: true },
+  { key: 'actions', label: 'Ações', sortable: false },
 ];
 
 export default async function VendasRoute({ searchParams }) {
@@ -117,8 +120,10 @@ export default async function VendasRoute({ searchParams }) {
                 ) : sortedRows.map((row) => (
                   <tr key={row.id}>
                     {columns.map((column) => (
-                      <td className={column.key === 'items' ? styles.longText : undefined} key={column.key}>
-                        {row.values[column.key]}
+                      <td className={column.key === 'items' ? styles.longText : column.key === 'assessment' || column.key === 'client' ? remocao.quebra : undefined} key={column.key}>
+                        {column.key === 'actions' ? (
+                          <BotaoRemover tipo="venda" id={row.id} numero={row.values.number} />
+                        ) : row.values[column.key]}
                       </td>
                     ))}
                   </tr>

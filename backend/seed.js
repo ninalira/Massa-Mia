@@ -1,9 +1,12 @@
 // Popula o Back4App com os dados de exemplo do Massa Mia.
-// Tradução do carregarDadosExemplo() do Main.java, com as mesmas fórmulas.
-// Para rodar: node --env-file=.env seed.js
+// Tradução do carregarDadosExemplo() do Main.java
 
-// 1. Endereço e chaves do Back4App (vêm do arquivo .env)
-const SERVIDOR = process.env.PARSE_SERVER_URL.replace(/\/$/, '');
+// 1. Endereço e chaves do Back4App 
+const SERVIDOR = (
+ process.env.PARSE_SERVER_URL ||
+ process.env.NEXT_PUBLIC_PARSE_URL ||
+ 'https://parseapi.back4app.com'
+).replace(/\/$/, '');
 const CABECALHOS = {
   'X-Parse-Application-Id': process.env.PARSE_APP_ID,
   'X-Parse-Master-Key': process.env.PARSE_MASTER_KEY,
@@ -15,21 +18,20 @@ const BEBIDAS = ['Refrigerante Cola', 'Suco de Laranja', 'Água com Gás', 'Chá
 const MOTIVOS_CANCELAMENTO = ['Cliente desistiu', 'Pagamento não aprovado', 'Pedido duplicado'];
 const TIPOS_EVENTO = ['Show', 'Aniversário', 'Workshop', 'Palestra', 'Conferência', 'Casamento'];
 const PRECO_CARDAPIO = { M: 30, G: 38, Lata: 6, '1L': 9 };
-// Campos que não existiam no Java (data, cliente, pagamento, responsável): nomes fictícios.
 const CLIENTES = ['Ana Souza', 'Bruno Lima', 'Carla Mendes', 'Diego Rocha', 'Elisa Castro',
   'Felipe Nunes', 'Gabriela Alves', 'Henrique Dias', 'Isabela Pires', 'João Martins'];
 const PAGAMENTOS = ['PIX', 'DINHEIRO', 'CARTAO'];
 const RESPONSAVEIS = ['Marina Costa', 'Rafael Teixeira', 'Juliana Freitas', 'Lucas Barbosa', 'Paula Ribeiro'];
 const PRIMEIRA_SEGUNDA = '2026-03-02';
 
-// Soma dias a uma data "AAAA-MM-DD" (como LocalDate.plusDays do Java).
+// Soma dias a uma data "AAAA-MM-DD" 
 function somarDias(data, dias) {
   const d = new Date(data + 'T12:00:00Z');
   d.setUTCDate(d.getUTCDate() + dias);
   return d.toISOString().slice(0, 10);
 }
 
-const produtos = {}; // cardápio: um Produto por categoria + nome + tamanho
+const produtos = {}; // cardápio
 const pedidos = [];
 const eventos = [];
 const itens = [];
@@ -48,12 +50,12 @@ function criarItem(produto, quantidade, precoUnitario, classeDono, dono) {
   itens.push({ produto, quantidade, precoUnitario, classeDono, dono });
 }
 
-// 2. Montar os 160 pedidos (mesmas fórmulas do Java)
+// 2. Montar os 160 pedidos 
 for (let id = 1; id <= 160; id++) {
   const pedido = {
     numPedido: id,
     diaSemana: ((id - 1) % 7) + 1,
-    // Um pedido por dia a partir de uma segunda: a data cai sempre no diaSemana acima
+    // Um pedido por dia a partir de uma segunda
     data: somarDias(PRIMEIRA_SEGUNDA, id - 1),
     cliente: CLIENTES[id % 10],
     formaPagamento: PAGAMENTOS[id % 3],
@@ -81,7 +83,7 @@ for (let id = 1; id <= 160; id++) {
   pedidos.push(pedido);
 }
 
-// 3. Montar os 40 eventos (mesmas fórmulas do Java)
+// 3. Montar os 40 eventos 
 for (let id = 1; id <= 40; id++) {
   const capacidade = 60 + (id % 6) * 15;
   const evento = {
@@ -126,7 +128,7 @@ for (let id = 1; id <= 40; id++) {
 
 // 4. Conversar com o Back4App
 
-// Faz uma chamada HTTP e devolve a resposta em JSON; se o Back4App recusar, lança erro.
+// Faz uma chamada HTTP e devolve a resposta em JSON. se o Back4App recusar, lança erro.
 async function chamar(metodo, caminho, corpo) {
   const resposta = await fetch(SERVIDOR + caminho, {
     method: metodo,
@@ -156,7 +158,7 @@ async function salvarTodos(classe, lista, montarCorpo) {
   }
 }
 
-// Um "ponteiro" é a forma do Back4App guardar uma referência a outro objeto (como uma chave estrangeira).
+// Um "ponteiro" 
 function ponteiro(classe, obj) {
   return { __type: 'Pointer', className: classe, objectId: obj.objectId };
 }
@@ -169,7 +171,7 @@ async function gravar() {
     return;
   }
 
-  // Ordem importa: os itens apontam para produtos, pedidos e eventos, que precisam existir antes.
+  // Ordem 
   await salvarTodos('Produto', Object.values(produtos));
   await salvarTodos('Pedido', pedidos);
   await salvarTodos('Evento', eventos);

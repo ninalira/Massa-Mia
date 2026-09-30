@@ -28,7 +28,7 @@ export default function LoginProprietario() {
     router.push('/proprietario/menu');
   }
 
-  // Mesmo visual para os dois campos. Com erro, o Mantine marca o campo (data-error) e a borda fica vermelha.
+
   const campo = { label: styles.label, input: styles.input };
 
   return (
