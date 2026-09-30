@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import styles from '../../../proprietario/menu/eventos/page.module.css';
 import Cabecalho from '@/app/components/Cabecalho';
+import BotaoRemover from '@/app/components/BotaoRemover';
+import remocao from '@/app/components/BotaoRemover.module.css';
 import { listarEventos, real, dataBR, NOMES } from '@/lib/backend';
 
 const columns = [
@@ -13,6 +15,7 @@ const columns = [
   { key: 'total', label: 'Valor (ingressos + buffet)', sortable: true },
   { key: 'assessment', label: 'Avaliação', sortable: false },
   { key: 'status', label: 'Status', sortable: true },
+  { key: 'actions', label: 'Ações', sortable: false },
 ];
 
 export default async function EventosRoute({ searchParams }) {
@@ -121,12 +124,14 @@ export default async function EventosRoute({ searchParams }) {
                 ) : sortedRows.map((row) => (
                   <tr key={row.id}>
                     {columns.map((column) => (
-                      <td key={column.key}>
+                      <td className={column.key === 'eventType' || column.key === 'responsible' ? remocao.quebra : undefined} key={column.key}>
                         {column.key === 'eventType' ? (
                           <>
                             <strong>{row.values.eventType}</strong>
                             <span className={styles.subText}>{row.values.eventName}</span>
                           </>
+                        ) : column.key === 'actions' ? (
+                          <BotaoRemover tipo="evento" id={row.id} numero={row.values.number} />
                         ) : row.values[column.key]}
                       </td>
                     ))}
