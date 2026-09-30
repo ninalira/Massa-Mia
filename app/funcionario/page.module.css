@@ -1,5 +1,5 @@
 .container {
-  /* Os componentes do Mantine (campos e botão) passam a usar a fonte nova só nesta tela */
+
   --mantine-font-family: var(--font-texto), sans-serif;
   min-height: 100vh;
   display: flex;
@@ -100,7 +100,6 @@
   font-weight: 800;
 }
 
-/* "Sombra" embaixo do botão, num tom mais escuro da mesma cor */
 .buttonAzul {
   box-shadow: 0 4px 0 #2d4170;
 }
