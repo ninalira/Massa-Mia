@@ -222,14 +222,6 @@
 	font-size: 18px;
 }
 
-.dropdown {
-	background: #ffffff;
-}
-
-.option {
-	color: var(--blue);
-}
-
 .field {
 	min-width: 0;
 }
@@ -303,6 +295,22 @@
 .form :global(textarea.mantine-Input-input) {
 	min-height: 96px;
 	padding-top: 11px;
+}
+
+.dropdown {
+	border-color: #eadfca;
+	border-radius: 6px;
+}
+
+.option {
+	color: #2d4170;
+	font-family: var(--font-texto), sans-serif;
+	font-size: 15px;
+}
+
+.option[data-combobox-selected] {
+	color: #2d4170;
+	background: #ffec89;
 }
 
 .formFooter {
