@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { Alert, Button, NumberInput, TextInput } from '@mantine/core';
 import styles from './page.module.css';
 
-const pageUrl = '/funcionario/menu/agendarEvento';
+const pageUrl = '/funcionario/menu/agendarEvento'; 
 
 async function agendarEvento(formData) {
 	'use server';
