@@ -2,7 +2,11 @@
 // Tradução do carregarDadosExemplo() do Main.java
 
 // 1. Endereço e chaves do Back4App 
-const SERVIDOR = process.env.PARSE_SERVER_URL.replace(/\/$/, '');
+const SERVIDOR = (
+ process.env.PARSE_SERVER_URL ||
+ process.env.NEXT_PUBLIC_PARSE_URL ||
+ 'https://parseapi.back4app.com'
+).replace(/\/$/, '');
 const CABECALHOS = {
   'X-Parse-Application-Id': process.env.PARSE_APP_ID,
   'X-Parse-Master-Key': process.env.PARSE_MASTER_KEY,
