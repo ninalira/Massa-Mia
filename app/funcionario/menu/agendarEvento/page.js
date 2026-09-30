@@ -31,7 +31,11 @@ async function agendarEvento(formData) {
 		redirect(`${pageUrl}?erro=${encodeURIComponent('Preencha todos os campos com valores válidos.')}`);
 	}
 
-	const servidor = (process.env.PARSE_SERVER_URL || '').replace(/\/$/, '');
+const servidor = (
+	process.env.PARSE_SERVER_URL ||
+	process.env.NEXT_PUBLIC_PARSE_URL ||
+	'https://parseapi.back4app.com'
+).replace(/\/$/, '');	
 	const appId = process.env.PARSE_APP_ID;
 	const javascriptKey = process.env.PARSE_JS_KEY;
 
@@ -46,8 +50,8 @@ async function agendarEvento(formData) {
 		const resposta = await fetch(`${servidor}/classes/Evento`, {
 			method: 'POST',
 			headers: {
-				'X-Parse-Application-Id': appId,
-				'X-Parse-JavaScript-Key': javascriptKey,
+				'X-Parse-Application-Id': process.env.NEXT_PUBLIC_PARSE_APP_ID || process.env.PARSE_APP_ID,
+				'X-Parse-JavaScript-Key': process.env.NEXT_PUBLIC_PARSE_JS_KEY || process.env.PARSE_JS_KEY,
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ data, responsavel, capacidade, precoIngresso, status: 'AGENDADO' }),
