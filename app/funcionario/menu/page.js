@@ -2,8 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
 
-// Opção sem href aparece com "Em breve" (a tela ainda não existe).
-// Quando uma tela ficar pronta, é só colocar o href dela aqui (vira link).
+
 const pages = [
   {
     href: "/funcionario/menu/registroVendas",
@@ -31,7 +30,6 @@ const pages = [
   },
 ];
 
-// Seta "→" desenhada em SVG (fica igual em qualquer computador, ao contrário do caractere ↗)
 function Seta() {
   return (
     <svg className={styles.arrow} width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

@@ -1,35 +1,27 @@
-// Relatórios do Massa Mia: as 9 perguntas do README, como Cloud Functions.
-// Carregado pelo main.js (require). É o equivalente ao Relatorios.java + AnalyticsHelper.java.
-// Cada Parse.Cloud.define é como um método public static do Relatorios.java:
-// o front chama pelo nome (POST /functions/pergunta1) e recebe um JSON só com números.
-// O "R$" e os textos ficam por conta do front.
-// Mantivemos as regras do Java, mesmo as que parecem estranhas, para os números baterem:
-// cada uma está anotada com "Igual ao Java".
+// Relatórios do Massa Mia como Cloud Functions.
 
 const NOMES_DIA = ['', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'];
 
-// Java: AnalyticsHelper.arred2
+
 function arred2(valor) {
   return Math.round(valor * 100) / 100;
 }
 
-// Java: AnalyticsHelper.valorTotal / totalBuffet (preço do item × quantidade)
+
 function valorItens(itens) {
   let soma = 0;
   for (const item of itens) soma += item.preco * item.quantidade;
   return soma;
 }
 
-// Lê as três classes e monta listas simples, como os ArrayList<Pedido> e ArrayList<Evento> do Java.
-// useMasterKey: o relatório lê tudo, mesmo depois das permissões do Passo 4.
-// limit(1000): sem isso o Back4App devolve só 100 de cada.
+// Lê as três classes e monta listas simples
 async function carregarDados() {
   const opcoes = { useMasterKey: true };
   const listaPedidos = await new Parse.Query('Pedido').ascending('numPedido').limit(1000).find(opcoes);
   const listaEventos = await new Parse.Query('Evento').ascending('numEvento').limit(1000).find(opcoes);
   const listaItens = await new Parse.Query('ItemProduto').include('produto').limit(1000).find(opcoes);
 
-  const pedidos = {}; // objectId -> pedido (como um HashMap<String, Pedido>)
+  const pedidos = {}; 
   for (const p of listaPedidos) {
     pedidos[p.id] = { status: p.get('status'), diaSemana: p.get('diaSemana'), avaliacao: p.get('avaliacao') || 0, itens: [] };
   }
@@ -48,7 +40,7 @@ async function carregarDados() {
     const produto = i.get('produto');
     const categoria = produto.get('categoria');
     const item = {
-      // Java: Produto.descricao(), por exemplo "Pizza Calabresa (G)"
+      // "Pizza Calabresa (G)"
       descricao: (categoria === 'PIZZA' ? 'Pizza ' : 'Bebida ') + produto.get('nome') + ' (' + produto.get('tamanho') + ')',
       sabor: categoria === 'PIZZA' ? produto.get('nome') : null,
       quantidade: i.get('quantidade'),
@@ -63,12 +55,11 @@ async function carregarDados() {
   return { pedidos: Object.values(pedidos), eventos: Object.values(eventos) };
 }
 
-// Soma quantidades por chave (Java: mapa.put(k, mapa.getOrDefault(k, 0) + q)).
+// Soma quantidades por chave
 function somar(mapa, chave, quantidade) {
   mapa[chave] = (mapa[chave] || 0) + quantidade;
 }
 
-// Java: maiorEntrada. Diferença: se houver empate, devolve todos os empatados.
 function maiores(mapa) {
   const chaves = Object.keys(mapa);
   if (chaves.length === 0) return null;
@@ -76,7 +67,7 @@ function maiores(mapa) {
   return { produtos: chaves.filter((k) => mapa[k] === maior), quantidade: maior };
 }
 
-// Média das avaliações > 0, limitada entre 1 e 5 (Java: satisfacaoSalao / Eventos / Integrada).
+// Média das avaliações
 function mediaAvaliacoes(avaliacoes) {
   const validas = avaliacoes.filter((a) => a > 0);
   if (validas.length === 0) return 0;
@@ -107,7 +98,6 @@ Parse.Cloud.define('pergunta2', async () => {
       }
     }
     for (const e of eventos) {
-      // Igual ao Java: conta eventos AGENDADOS também (só exclui CANCELADO)
       if (e.diaSemana === dia && e.status !== 'CANCELADO') {
         for (const item of e.buffet) somar(consumoEventos, item.descricao, item.quantidade);
       }
@@ -187,7 +177,6 @@ Parse.Cloud.define('pergunta7', async () => {
   let destaque = null;
   let maiorValor = -1;
   for (const e of eventos) {
-    // Igual ao Java: olha todos os eventos, até cancelados; no empate fica o de menor número
     const valor = valorItens(e.buffet);
     if (valor > maiorValor) {
       maiorValor = valor;
@@ -211,7 +200,6 @@ Parse.Cloud.define('pergunta8', async () => {
       .filter((p) => p.status === 'SERVIDO' && p.diaSemana === dia)
       .reduce((s, p) => s + valorItens(p.itens), 0);
     const realizados = eventos.filter((e) => e.diaSemana === dia && e.status === 'REALIZADO');
-    // Java: Evento.receitaIngressos() + totalBuffet
     const receitaEventos = realizados.reduce((s, e) => s + e.precoIngresso * e.ingressosVendidos + valorItens(e.buffet), 0);
     const total = receitaSalao + receitaEventos;
 

@@ -27,7 +27,6 @@
   gap: 20px;
 }
 
-/* O link do logo tem pelo menos 44px de altura, para ser fácil de tocar */
 .brand a {
   display: flex;
   min-height: 44px;
@@ -164,7 +163,6 @@
   color: var(--terracotta);
 }
 
-/* Opção cuja tela ainda não existe: fundo apagado, borda tracejada e não reage ao mouse */
 .disabled,
 .disabled:hover {
   border-style: dashed;

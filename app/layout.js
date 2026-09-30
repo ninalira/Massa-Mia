@@ -4,8 +4,7 @@ import { MantineProvider } from '@mantine/core';
 import { Fredoka, Nunito } from 'next/font/google';
 import { theme } from '@/theme';
 
-// Fontes do visual novo. Aqui elas só são carregadas e ganham um nome (variável CSS).
-// Cada tela escolhe se usa: var(--font-titulo) nos títulos e var(--font-texto) no resto.
+// Fontes 
 const fonteTitulo = Fredoka({ subsets: ['latin'], weight: ['500', '600'], variable: '--font-titulo' });
 const fonteTexto = Nunito({ subsets: ['latin'], weight: ['400', '600', '700', '800'], variable: '--font-texto' });
 
