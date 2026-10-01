@@ -169,7 +169,7 @@ Quatro classes no Back4App, traduzidas diretamente do sistema Java original:
 | Nome | RA | GitHub |
 |---|---|---|
 | *Heitor Farias Santos* | *853409* | [heitorfariass](https://github.com/heitorfariass) |
-| *[Nome]* | *[RA]* | [@usuario](https://github.com/) |
+| *Nina Lira Henriques de Araújo* | *854887* | [ninalira](https://github.com/ninalira). |
 | *[Nome]* | *[RA]* | [@usuario](https://github.com/) |
 | *[Nome]* | *[RA]* | [@usuario](https://github.com/) |
 | *[Nome]* | *[RA]* | [@usuario](https://github.com/) |
