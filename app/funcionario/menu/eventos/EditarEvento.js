@@ -3,7 +3,7 @@
 import { useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { EditarEvento as salvarEvento } from './actions';
-import styles from './EditarEvento.module.css';
+import styles from './editarEvento.module.css';
 
 export default function EditarEvento({ id, numero, campoTipo, inicial }) {
 	const router = useRouter();

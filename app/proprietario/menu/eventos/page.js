@@ -3,7 +3,7 @@ import styles from './page.module.css';
 import Cabecalho from '@/app/components/Cabecalho';
 import { listarEventos, real, dataBR, NOMES } from '@/lib/backend';
 import EditarEvento from '../../../funcionario/menu/eventos/EditarEvento';
-import editar from '../../../funcionario/menu/eventos/EditarEvento.module.css';
+import editar from '../../../funcionario/menu/eventos/editarEvento.module.css';
 
 // Etiqueta colorida de cada status (funciona como um switch do Java: status → cor)
 const STATUS_COLORS = { REALIZADO: styles.blue, AGENDADO: styles.yellow, CANCELADO: styles.orange };

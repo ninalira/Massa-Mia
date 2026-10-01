@@ -5,7 +5,7 @@ import BotaoRemover from '@/app/components/BotaoRemover';
 import remocao from '@/app/components/BotaoRemover.module.css';
 import AtualizarStatusEvento from './AtualizarStatusEvento';
 import EditarEvento from './EditarEvento';
-import editar from './EditarEvento.module.css';
+import editar from './editarEvento.module.css';
 import { listarEventos, real, dataBR, NOMES } from '@/lib/backend';
 
 const columns = [
