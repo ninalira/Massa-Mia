@@ -43,7 +43,6 @@ export default async function EventosPage({ searchParams }) {
         number: evento.numEvento,
         date: dataBR(evento.data),
         eventType: tipo,
-        eventName: evento.nome || '',
         responsible: evento.responsavel || '—',
         attendance: (realizado ? evento.publicoReal : '—') + ' / ' + (evento.capacidade ?? '—'),
         buffet: evento.buffet > 0 ? real(evento.buffet) : 'Sem buffet',
@@ -130,7 +129,7 @@ export default async function EventosPage({ searchParams }) {
                         {column.key === 'eventType' ? (
                           <>
                             <strong>{row.values.eventType}</strong>
-                            <span className={styles.subText}>{row.values.eventName}</span>
+                            <span className={styles.subText}></span>
                           </>
                         ) : column.key === 'status' ? (
                           <span className={STATUS_COLORS[row.statusCode]}>{row.values.status}</span>
