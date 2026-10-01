@@ -78,7 +78,7 @@ flowchart LR
     A["🖥️ Telas<br/>Next.js + Mantine<br/>Server e Client Components"] -->|"Server Actions<br/>criar · atualizar · remover"| B["lib/backend.js<br/>fetch com as chaves"]
     A -->|"consultas<br/>Server Components"| B
     B -->|"API REST"| C["☁️ Back4App"]
-    C --> D["⚙️ Cloud Code<br/>validações e 9 relatórios"]
+    C --> D["Validações e 9 relatórios"]
     D --> E[("🗄️ Produto · Pedido<br/>Evento · ItemProduto")]
     F["🇧🇷 BrasilAPI<br/>feriados nacionais"] -.->|"agendamento<br/>de eventos"| A
 ```
@@ -168,7 +168,7 @@ Quatro classes no Back4App, traduzidas diretamente do sistema Java original:
 
 | Nome | RA | GitHub |
 |---|---|---|
-| *[Nome]* | *[RA]* | [@usuario](https://github.com/) |
+| *Heitor Farias Santos* | *853409* | [heitorfariass](https://github.com/heitorfariass) |
 | *[Nome]* | *[RA]* | [@usuario](https://github.com/) |
 | *[Nome]* | *[RA]* | [@usuario](https://github.com/) |
 | *[Nome]* | *[RA]* | [@usuario](https://github.com/) |
