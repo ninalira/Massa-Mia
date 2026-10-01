@@ -2,7 +2,7 @@
 
 import { useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { editarEvento } from './actions';
+import { EditarEvento } from './actions';
 import styles from './EditarEvento.module.css';
 
 export default function EditarEvento({ id, numero, campoTipo, inicial }) {
@@ -36,7 +36,7 @@ export default function EditarEvento({ id, numero, campoTipo, inicial }) {
 
 		setErro('');
 		iniciarTransicao(async () => {
-			const resultado = await editarEvento(id, dados);
+			const resultado = await EditarEvento(id, dados);
 			if (resultado.ok) {
 				fechar();
 				router.refresh();

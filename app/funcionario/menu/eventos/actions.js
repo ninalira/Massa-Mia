@@ -11,7 +11,7 @@ export async function alterarStatusEvento(id, status) {
 	}
 }
 
-export async function editarEvento(id, dados) {
+export async function EditarEvento(id, dados) {
 	try {
 		await atualizarEvento(id, dados);
 		return { ok: true };

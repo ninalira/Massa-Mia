@@ -2,8 +2,8 @@
 
 import { useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { editarVenda, carregarProdutos } from './actions';
-import styles from './editarVenda.module.css';
+import { EditarVenda, carregarProdutos } from './actions';
+import styles from './EditarVenda.module.css';
 
 const PAGAMENTOS = [
 	{ value: 'PIX', label: 'Pix' },
@@ -72,7 +72,7 @@ export default function EditarVenda({ id, numero, inicial }) {
 
 		setErro('');
 		iniciarTransicao(async () => {
-			const resultado = await editarVenda(id, dados);
+			const resultado = await EditarVenda(id, dados);
 			if (resultado.ok) {
 				fechar();
 				router.refresh();

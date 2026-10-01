@@ -4,8 +4,8 @@ import Cabecalho from '@/app/components/Cabecalho';
 import BotaoRemover from '@/app/components/BotaoRemover';
 import remocao from '@/app/components/BotaoRemover.module.css';
 import { listarVendas, real, dataBR, NOMES } from '@/lib/backend';
-import EditarVenda from './editarVenda';
-import editar from './editarVenda.module.css';
+import EditarVenda from './EditarVenda';
+import editar from './EditarVenda.module.css';
 
 const columns = [
   { key: 'number', label: 'Nº', sortable: true },
