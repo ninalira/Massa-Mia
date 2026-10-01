@@ -1,0 +1,154 @@
+.acoes {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.botao {
+	min-height: 38px;
+	padding: 0 12px;
+	border: 1px solid #d9ccb2;
+	border-radius: 6px;
+	color: #2d4170;
+	background: #ffffff;
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.botao:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.botao:focus-visible,
+.campo input:focus-visible,
+.campo select:focus-visible,
+.item input:focus-visible,
+.item select:focus-visible {
+	outline: 3px solid #3b5590;
+	outline-offset: 2px;
+}
+
+.primario {
+	border-color: #2d4170;
+	color: #ffffff;
+	background: #2d4170;
+}
+
+.dialogo {
+	width: min(640px, 94vw);
+	max-height: 90vh;
+	padding: 24px;
+	overflow: auto;
+	border: 1px solid #d9ccb2;
+	border-radius: 10px;
+	color: #2d4170;
+	background: #ffffff;
+}
+
+.dialogo::backdrop {
+	background: rgba(45, 65, 112, 0.45);
+}
+
+.dialogo h2 {
+	margin: 0 0 16px;
+	font-size: 20px;
+}
+
+.grade {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.campo {
+	display: grid;
+	gap: 4px;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.larga {
+	grid-column: 1 / -1;
+}
+
+.campo input,
+.campo select,
+.item input,
+.item select {
+	min-height: 38px;
+	padding: 0 9px;
+	border: 1px solid #d9ccb2;
+	border-radius: 6px;
+	color: #2d4170;
+	background: #ffffff;
+	font: inherit;
+	font-weight: 400;
+}
+
+.itens {
+	display: grid;
+	gap: 8px;
+	margin: 16px 0 0;
+	padding: 0;
+	border: 0;
+}
+
+.itens legend {
+	padding: 0;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.item {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 80px auto;
+	gap: 8px;
+}
+
+.carregando {
+	margin: 0;
+	font-size: 13px;
+}
+
+.rodape {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 16px;
+}
+
+.erro {
+	margin: 12px 0 0;
+	color: #8f2b01;
+	font-size: 13px;
+}
+
+.srOnly {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@media (max-width: 480px) {
+	.grade {
+		grid-template-columns: 1fr;
+	}
+
+	.item {
+		grid-template-columns: 1fr 80px;
+	}
+
+	.item .botao {
+		grid-column: 1 / -1;
+	}
+}

@@ -4,6 +4,8 @@ import Cabecalho from '@/app/components/Cabecalho';
 import BotaoRemover from '@/app/components/BotaoRemover';
 import remocao from '@/app/components/BotaoRemover.module.css';
 import AtualizarStatusEvento from './AtualizarStatusEvento';
+import EditarEvento from './editarEvento';
+import editar from './editarEvento.module.css';
 import { listarEventos, real, dataBR, NOMES } from '@/lib/backend';
 
 const columns = [
@@ -39,6 +41,17 @@ export default async function EventosRoute({ searchParams }) {
 
     return {
       id: evento.objectId,
+      campoTipo: 'tipo' in evento ? 'tipo' : 'nome',
+      inicial: {
+        data: evento.data || '',
+        tipo: evento.tipo ?? evento.nome ?? '',
+        responsavel: evento.responsavel || '',
+        capacidade: evento.capacidade ?? 0,
+        precoIngresso: evento.precoIngresso ?? 0,
+        ingressosVendidos: evento.ingressosVendidos ?? 0,
+        publicoReal: evento.publicoReal ?? 0,
+        avaliacao: evento.avaliacao ?? 0,
+      },
       values: {
         number: evento.numEvento,
         date: dataBR(evento.data),
@@ -132,7 +145,10 @@ export default async function EventosRoute({ searchParams }) {
                             <span className={styles.subText}></span>
                           </>
                         ) : column.key === 'actions' ? (
-              <BotaoRemover tipo="evento" id={row.id} numero={row.values.number} />
+                          <div className={editar.acoes}>
+                            <EditarEvento id={row.id} numero={row.values.number} campoTipo={row.campoTipo} inicial={row.inicial} />
+                            <BotaoRemover tipo="evento" id={row.id} numero={row.values.number} />
+                          </div>
             ) : column.key === 'status' ? (
               <AtualizarStatusEvento id={row.id} status={row.values.statusControl} />
                         ) : row.values[column.key]}

@@ -4,6 +4,8 @@ import Cabecalho from '@/app/components/Cabecalho';
 import BotaoRemover from '@/app/components/BotaoRemover';
 import remocao from '@/app/components/BotaoRemover.module.css';
 import { listarVendas, real, dataBR, NOMES } from '@/lib/backend';
+import EditarVenda from './editarVenda';
+import editar from './editarVenda.module.css';
 
 const columns = [
   { key: 'number', label: 'Nº', sortable: true },
@@ -36,6 +38,15 @@ export default async function VendasRoute({ searchParams }) {
 
     return {
       id: venda.objectId,
+        inicial: {
+        data: venda.data || '',
+        cliente: venda.cliente || '',
+        formaPagamento: venda.formaPagamento || '',
+        status: venda.status || 'SERVIDO',
+        avaliacao: venda.avaliacao ?? 0,
+        motivoCancelamento: venda.motivoCancelamento || '',
+        itens: venda.itens.map((item) => ({ produtoId: item.produtoId, quantidade: item.quantidade })),
+      },
       values: {
         number: venda.numPedido,
         date: dataBR(venda.data),
@@ -122,7 +133,10 @@ export default async function VendasRoute({ searchParams }) {
                     {columns.map((column) => (
                       <td className={column.key === 'items' ? styles.longText : column.key === 'assessment' || column.key === 'client' ? remocao.quebra : undefined} key={column.key}>
                         {column.key === 'actions' ? (
-                          <BotaoRemover tipo="venda" id={row.id} numero={row.values.number} />
+                          <div className={editar.acoes}>
+                            <EditarVenda id={row.id} numero={row.values.number} inicial={row.inicial} />
+                            <BotaoRemover tipo="venda" id={row.id} numero={row.values.number} />
+                          </div>
                         ) : row.values[column.key]}
                       </td>
                     ))}
