@@ -4,6 +4,7 @@ import Cabecalho from '@/app/components/Cabecalho';
 import { listarProdutos } from '@/lib/backend';
 import ItensBuffet from './ItensBuffet';
 import styles from './page.module.css';
+import CampoData from './CampoData';
 
 const pageUrl = '/funcionario/menu/agendarEvento'; 
 
@@ -182,13 +183,7 @@ export default async function AgendarEventoPage({ searchParams }) {
 							<strong>{numeroEvento || 'Gerado ao salvar'}</strong>
 							<small>Numeração definida automaticamente pelo sistema.</small>
 						</div>
-						<TextInput
-							className={styles.field}
-							label="Data do evento"
-							name="data"
-							required
-							type="date"
-						/>
+						<CampoData className={styles.field} />
 						<TextInput
 							autoComplete="name"
 							className={styles.field}
