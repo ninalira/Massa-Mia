@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { Alert, Button, NumberInput, TextInput } from '@mantine/core';
+import { Alert, Button, NumberInput, Select, TextInput } from '@mantine/core';
 import Cabecalho from '@/app/components/Cabecalho';
 import { listarProdutos } from '@/lib/backend';
 import ItensBuffet from './ItensBuffet';
@@ -7,12 +7,14 @@ import styles from './page.module.css';
 import CampoData from './CampoData';
 
 const pageUrl = '/funcionario/menu/agendarEvento'; 
+const TIPOS = ['Show', 'Aniversário', 'Workshop', 'Palestra', 'Conferência', 'Casamento'];
 
 async function agendarEvento(formData) {
 	'use server';
 
 	const data = String(formData.get('data') || '').trim();
 	const responsavel = String(formData.get('responsavel') || '').trim();
+	const tipo = String(formData.get('tipo') || '').trim();
 	const capacidade = Number(formData.get('capacidade'));
 	const precoIngressoInput = String(formData.get('precoIngresso') || '').trim();
 	const precoIngresso = Number(precoIngressoInput);
@@ -35,6 +37,7 @@ async function agendarEvento(formData) {
 
 	if (
 		!responsavel
+		|| !TIPOS.includes(tipo)
 		|| !dataValida
 		|| !Number.isSafeInteger(capacidade)
 		|| capacidade < 1
@@ -70,7 +73,7 @@ const servidor = (
 		const resposta = await fetch(`${servidor}/classes/Evento`, {
 			method: 'POST',
 			headers: cabecalhos,
-			body: JSON.stringify({ data, responsavel, capacidade, precoIngresso, status: 'AGENDADO' }),
+			body: JSON.stringify({ data, tipo, responsavel, capacidade, precoIngresso, status: 'AGENDADO' }),
 			cache: 'no-store',
 		});
 		const resultado = await resposta.json();
@@ -184,6 +187,16 @@ export default async function AgendarEventoPage({ searchParams }) {
 							<small>Numeração definida automaticamente pelo sistema.</small>
 						</div>
 						<CampoData className={styles.field} />
+						<Select
+							allowDeselect={false}
+							className={styles.field}
+							classNames={{ dropdown: styles.dropdown, option: styles.option }}
+							data={TIPOS}
+							label="Tipo do evento"
+							name="tipo"
+							placeholder="Selecione o tipo"
+							required
+						/>
 						<TextInput
 							autoComplete="name"
 							className={styles.field}
@@ -223,7 +236,6 @@ export default async function AgendarEventoPage({ searchParams }) {
 					<ItensBuffet produtos={produtos} />
 
 					<div className={styles.formFooter}>
-						<span>O número do evento é atribuído pelo backend após o cadastro.</span>
 						<Button className={styles.submitButton} color="massaVermelho" type="submit">
 							Agendar evento <span aria-hidden="true">↗</span>
 						</Button>
