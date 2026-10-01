@@ -2,8 +2,8 @@
 
 import { useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { EditarEvento } from './actions';
-import styles from './editarEvento.module.css';
+import { EditarEvento as salvarEvento } from './actions';
+import styles from './EditarEvento.module.css';
 
 export default function EditarEvento({ id, numero, campoTipo, inicial }) {
 	const router = useRouter();
@@ -36,7 +36,7 @@ export default function EditarEvento({ id, numero, campoTipo, inicial }) {
 
 		setErro('');
 		iniciarTransicao(async () => {
-			const resultado = await EditarEvento(id, dados);
+			const resultado = await salvarEvento(id, dados);
 			if (resultado.ok) {
 				fechar();
 				router.refresh();

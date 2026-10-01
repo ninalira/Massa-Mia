@@ -2,11 +2,14 @@ import Link from 'next/link';
 import styles from './page.module.css';
 import Cabecalho from '@/app/components/Cabecalho';
 import { listarEventos, real, dataBR, NOMES } from '@/lib/backend';
+import EditarEvento from '../../../funcionario/menu/eventos/EditarEvento';
+import editar from '../../../funcionario/menu/eventos/EditarEvento.module.css';
 
 // Etiqueta colorida de cada status (funciona como um switch do Java: status → cor)
 const STATUS_COLORS = { REALIZADO: styles.blue, AGENDADO: styles.yellow, CANCELADO: styles.orange };
 
 const columns = [
+  { key: 'actions', label: 'Ações', sortable: false },
   { key: 'number', label: 'Nº', sortable: true },
   { key: 'date', label: 'Data', sortable: true },
   { key: 'eventType', label: 'Evento', sortable: true },
@@ -38,6 +41,17 @@ export default async function EventosPage({ searchParams }) {
 
     return {
       id: evento.objectId,
+      campoTipo: 'tipo' in evento ? 'tipo' : 'nome',
+      inicial: {
+        data: evento.data || '',
+        tipo: evento.tipo ?? evento.nome ?? '',
+        responsavel: evento.responsavel || '',
+        capacidade: evento.capacidade ?? 0,
+        precoIngresso: evento.precoIngresso ?? 0,
+        ingressosVendidos: evento.ingressosVendidos ?? 0,
+        publicoReal: evento.publicoReal ?? 0,
+        avaliacao: evento.avaliacao ?? 0,
+      },
       statusCode: evento.status,
       values: {
         number: evento.numEvento,
@@ -133,6 +147,10 @@ export default async function EventosPage({ searchParams }) {
                           </>
                         ) : column.key === 'status' ? (
                           <span className={STATUS_COLORS[row.statusCode]}>{row.values.status}</span>
+                        ) : column.key === 'actions' ? (
+                          <div className={editar.acoes}>
+                            <EditarEvento id={row.id} numero={row.values.number} campoTipo={row.campoTipo} inicial={row.inicial} />
+                          </div>
                         ) : row.values[column.key]}
                       </td>
                     ))}

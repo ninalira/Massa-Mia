@@ -41,14 +41,14 @@ O Massa Mia nasceu de um trabalho de disciplina: um sistema de gestão de pizzar
 **Área do funcionário** — a rotina do restaurante:
 
 - 🧾 **Registrar venda** — cliente, data, forma de pagamento, status e itens do pedido, com **total calculado ao vivo** enquanto os produtos são escolhidos.
-- 📋 **Vendas** — consulta das vendas registradas, com possibilidade de remover um lançamento errado.
+- 📋 **Vendas** — consulta das vendas registradas, com opção para editar cada venda ou remover um lançamento errado.
 - 📅 **Agendar evento** — data, responsável, capacidade, valor do ingresso e **buffet opcional** (a data informada é enriquecida com o **feriado nacional** consultado em API externa).
-- 🔄 **Eventos** — atualiza o status do evento (realizado ou cancelado) direto na tabela e remove eventos.
+- 🔄 **Eventos** — edita os dados de cada evento, atualiza o status direto na tabela e remove eventos.
 
 **Área do proprietário** — a visão do negócio:
 
-- 💰 **Vendas** — todas as vendas com itens, status e total, **ordenáveis por qualquer coluna**.
-- 🎪 **Eventos** — público, buffet, valores e status de cada evento.
+- 💰 **Vendas** — todas as vendas com itens, status e total, **ordenáveis por qualquer coluna e editáveis**.
+- 🎪 **Eventos** — público, buffet, valores e status de cada evento, com opção de edição.
 - 📊 **Relatórios** — as 9 perguntas do dono em cartões: financeiro, produtos mais consumidos e satisfação média.
 
 **Detalhes que fazem diferença:**

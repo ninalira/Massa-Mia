@@ -8,6 +8,7 @@ import EditarVenda from './editarVenda';
 import editar from './editarVenda.module.css';
 
 const columns = [
+  { key: 'actions', label: 'Ações', sortable: false },
   { key: 'number', label: 'Nº', sortable: true },
   { key: 'date', label: 'Data', sortable: true },
   { key: 'client', label: 'Cliente', sortable: true },
@@ -16,7 +17,6 @@ const columns = [
   { key: 'status', label: 'Status', sortable: true },
   { key: 'assessment', label: 'Avaliação / motivo', sortable: false },
   { key: 'total', label: 'Total', sortable: true },
-  { key: 'actions', label: 'Ações', sortable: false },
 ];
 
 export default async function VendasRoute({ searchParams }) {
@@ -38,7 +38,7 @@ export default async function VendasRoute({ searchParams }) {
 
     return {
       id: venda.objectId,
-        inicial: {
+      inicial: {
         data: venda.data || '',
         cliente: venda.cliente || '',
         formaPagamento: venda.formaPagamento || '',
@@ -87,7 +87,7 @@ export default async function VendasRoute({ searchParams }) {
       <div className={styles.content}>
         <p className={styles.eyebrow}>ROTINA DO RESTAURANTE</p>
         <h1>Vendas</h1>
-        <p className={styles.description}>Consulte as vendas registradas no restaurante.</p>
+        <p className={styles.description}>Consulte e edite as vendas registradas no restaurante.</p>
 
         <section className={styles.listSection} aria-labelledby="sales-list-title">
           <div className={styles.sectionHeading}>

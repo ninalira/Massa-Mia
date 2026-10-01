@@ -2,11 +2,14 @@ import Link from 'next/link';
 import styles from './page.module.css';
 import Cabecalho from '@/app/components/Cabecalho';
 import { listarVendas, real, dataBR, NOMES } from '@/lib/backend';
+import EditarVenda from '../../../funcionario/menu/vendas/editarVenda';
+import editar from '../../../funcionario/menu/vendas/editarVenda.module.css';
 
 // Etiqueta colorida de cada status (funciona como um switch do Java: status → cor)
 const STATUS_COLORS = { SERVIDO: styles.blue, CANCELADO: styles.orange };
 
 const columns = [
+  { key: 'actions', label: 'Ações', sortable: false },
   { key: 'number', label: 'Nº', sortable: true },
   { key: 'date', label: 'Data', sortable: true },
   { key: 'client', label: 'Cliente', sortable: true },
@@ -36,6 +39,15 @@ export default async function VendasPage({ searchParams }) {
 
     return {
       id: venda.objectId,
+      inicial: {
+        data: venda.data || '',
+        cliente: venda.cliente || '',
+        formaPagamento: venda.formaPagamento || '',
+        status: venda.status || 'SERVIDO',
+        avaliacao: venda.avaliacao ?? 0,
+        motivoCancelamento: venda.motivoCancelamento || '',
+        itens: venda.itens.map((item) => ({ produtoId: item.produtoId, quantidade: item.quantidade })),
+      },
       statusCode: venda.status,
       values: {
         number: venda.numPedido,
@@ -123,7 +135,11 @@ export default async function VendasPage({ searchParams }) {
                   <tr key={row.id}>
                     {columns.map((column) => (
                       <td className={column.key === 'items' ? styles.longText : undefined} key={column.key}>
-                        {column.key === 'status' ? (
+                        {column.key === 'actions' ? (
+                          <div className={editar.acoes}>
+                            <EditarVenda id={row.id} numero={row.values.number} inicial={row.inicial} />
+                          </div>
+                        ) : column.key === 'status' ? (
                           <span className={STATUS_COLORS[row.statusCode]}>{row.values.status}</span>
                         ) : row.values[column.key]}
                       </td>

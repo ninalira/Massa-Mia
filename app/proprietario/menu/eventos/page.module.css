@@ -107,6 +107,21 @@
   background: var(--yellow);
 }
 
+.tableWrap th:first-child,
+.tableWrap td:first-child {
+  position: sticky;
+  left: 0;
+}
+
+.tableWrap th:first-child {
+  z-index: 2;
+}
+
+.tableWrap td:first-child {
+  z-index: 1;
+  background: #ffffff;
+}
+
 /* Título de coluna que ordena ao clicar */
 .sortLink {
   display: inline-flex;

@@ -13,8 +13,8 @@ const pages = [
   {
     href: '/funcionario/menu/vendas',
     number: '02',
-    title: 'Vendas',
-    description: 'Consulte as vendas registradas e remova uma venda lançada errada.',
+    title: 'Editar vendas registradas',
+    description: 'Consulte as vendas e use a ação Editar em cada registro.',
   },
   {
     href: '/funcionario/menu/agendarEvento',
@@ -25,8 +25,8 @@ const pages = [
   {
     href: '/funcionario/menu/eventos',
     number: '04',
-    title: 'Eventos',
-    description: 'Atualize o status dos eventos (realizado ou cancelado) e remova eventos.',
+    title: 'Editar eventos registrados',
+    description: 'Consulte os eventos e use a ação Editar em cada registro.',
   },
 ];
 

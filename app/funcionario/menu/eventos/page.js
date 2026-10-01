@@ -5,10 +5,11 @@ import BotaoRemover from '@/app/components/BotaoRemover';
 import remocao from '@/app/components/BotaoRemover.module.css';
 import AtualizarStatusEvento from './AtualizarStatusEvento';
 import EditarEvento from './EditarEvento';
-import editar from './editarEvento.module.css';
+import editar from './EditarEvento.module.css';
 import { listarEventos, real, dataBR, NOMES } from '@/lib/backend';
 
 const columns = [
+  { key: 'actions', label: 'Ações', sortable: false },
   { key: 'number', label: 'Nº', sortable: true },
   { key: 'date', label: 'Data', sortable: true },
   { key: 'eventType', label: 'Evento', sortable: true },
@@ -18,7 +19,6 @@ const columns = [
   { key: 'total', label: 'Valor (ingressos + buffet)', sortable: true },
   { key: 'assessment', label: 'Avaliação', sortable: false },
   { key: 'status', label: 'Status', sortable: true },
-  { key: 'actions', label: 'Ações', sortable: false },
 ];
 
 export default async function EventosRoute({ searchParams }) {
@@ -94,7 +94,7 @@ export default async function EventosRoute({ searchParams }) {
       <div className={styles.content}>
         <p className={styles.eyebrow}>ROTINA DO RESTAURANTE</p>
         <h1>Eventos</h1>
-        <p className={styles.description}>Consulte os eventos realizados e seus detalhes.</p>
+        <p className={styles.description}>Consulte e edite os eventos registrados e seus detalhes.</p>
 
         <section className={styles.listSection} aria-labelledby="events-list-title">
           <div className={styles.sectionHeading}>

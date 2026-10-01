@@ -102,6 +102,21 @@
   font-weight: 800;
 }
 
+.tableWrap th:first-child,
+.tableWrap td:first-child {
+  position: sticky;
+  left: 0;
+}
+
+.tableWrap th:first-child {
+  z-index: 2;
+}
+
+.tableWrap td:first-child {
+  z-index: 1;
+  background: #ffffff;
+}
+
 /* Coluna que está ordenando a tabela fica mais amarela */
 .tableWrap thead th.activeColumn {
   background: var(--yellow);
