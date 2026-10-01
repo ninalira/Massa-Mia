@@ -21,7 +21,7 @@ Navegação real pelo site: tela de entrada, área do proprietário e tabela de 
 
 | Acesso | Link |
 |---|---|
-| 🌐 Site publicado no Vercel | *[link](massa-mia.vercel.app)* |
+| 🌐 Site publicado no Vercel | *[link](https://massa-mia.vercel.app)* |
 | 📺 Vídeo completo no YouTube (até 4 min, com CRUD) | *[link]* |
 
 ## 🎯 O projeto
@@ -177,7 +177,7 @@ Quatro classes no Back4App, traduzidas diretamente do sistema Java original:
 ## 🔗 Entrega
 
 - 💻 **Código no GitHub:** você já está aqui — *[link do repositório](https://github.com/ninalira/Massa-Mia)*
-- 🌐 **Site publicado:** *[link do Vercel](massa-mia.vercel.app)*
+- 🌐 **Site publicado:** *[link do Vercel](https://massa-mia.vercel.app)*
 - 📺 **Vídeo de demonstração (YouTube, até 4 min):** *[link]*
 
 ## 📄 Licença
