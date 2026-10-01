@@ -171,7 +171,7 @@ Quatro classes no Back4App, traduzidas diretamente do sistema Java original:
 | *Heitor Farias Santos* | *853409* | [heitorfariass](https://github.com/heitorfariass) |
 | *Nina Lira Henriques de Araújo* | *854887* | [ninalira](https://github.com/ninalira). |
 | *Camila Danielle Ramos Torquato* | *854556* | [camilatorquato](https://github.com/camilatorquato) |
-| *[Nome]* | *[RA]* | [@usuario](https://github.com/) |
+| *Maria Clara Ribeiro Neves de A. Angelo* | *854922* | [mclararn16](https://github.com/mclararn16) |
 | *[Nome]* | *[RA]* | [@usuario](https://github.com/) |
 
 ## 🔗 Entrega
