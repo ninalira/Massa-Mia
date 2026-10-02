@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { remover } from './remover';
 import styles from './BotaoRemover.module.css';
 
-// Botão "Remover" de uma linha das tabelas Vendas e Eventos do funcionário.
 export default function BotaoRemover({ tipo, id, numero }) {
   const router = useRouter();
   const [removendo, setRemovendo] = useState(false);
@@ -21,7 +20,7 @@ export default function BotaoRemover({ tipo, id, numero }) {
     setRemovendo(false);
 
     if (resultado.ok) {
-      router.refresh(); // busca a lista de novo, já sem o registro
+      router.refresh(); 
     } else {
       window.alert('Não foi possível remover: ' + resultado.erro);
     }
