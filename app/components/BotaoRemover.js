@@ -6,7 +6,6 @@ import { remover } from './remover';
 import styles from './BotaoRemover.module.css';
 
 // Botão "Remover" de uma linha das tabelas Vendas e Eventos do funcionário.
-// Recebe 3 informações: tipo ('venda' ou 'evento'), id (objectId) e numero (nº mostrado na pergunta).
 export default function BotaoRemover({ tipo, id, numero }) {
   const router = useRouter();
   const [removendo, setRemovendo] = useState(false);
